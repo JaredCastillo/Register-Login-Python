@@ -1,0 +1,12 @@
+{% extends "core.html" %}
+{% block title %}Usuarios Recientes{% endblock %}
+{% block content %}
+<h1>Usuarios que han iniciado sesión recientemente</h1>
+<ul>
+    {% for user in recent_users %}
+    <li>{{ user.username }} - Último inicio de sesión: {{ user.last_login }}</li>
+    {% empty %}
+    <li>No hay usuarios que hayan iniciado sesión recientemente.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

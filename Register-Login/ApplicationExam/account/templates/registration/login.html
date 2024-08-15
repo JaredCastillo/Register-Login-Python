@@ -1,0 +1,27 @@
+{% extends "core.html" %}
+{% block title %}Login{% endblock %}
+<div class="columns">
+    {% block content %}
+        <div class="column is-half">
+            <h1 class="is-size-3 mt-3">Login</h1>
+            {% if form.errors %}
+            <p class="is-size-5">Tu correo y contraseña son incorrectos. Trata de nuevo.</p>
+        {% else %}
+            <p class="is-size-5">Si no cuentas con una sesión <a href="{% url 'register' %}">registrate aquí</a></p>
+        {% endif %}
+
+        <div class="login-form">
+            <form action="{% url 'login' %}" method="post">
+                {% load widget_tweaks %}
+                {% for field in form %}
+                    {{field.label_tag}}
+                    {% render_field field class+="input mt-2" %}
+                {% endfor %}
+                {% csrf_token %}
+                <input type="submit" value="Login" class="button mt-2"/>
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+        </div>
+        </div>
+        {% endblock %}
+</div>

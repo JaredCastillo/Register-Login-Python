@@ -1,0 +1,13 @@
+Super usuario: 
+usuario: admin
+contraseña: admin2024
+
+ver base de datos de la aplicacion:
+http://127.0.0.1:8000/admin/auth/user/
+
+instrucciones para acceder a usuario normal: 
+
+ejemplo: 
+Si el usuario se llama Noah usamos: 
+usuario: Noah@Noah.com
+contraseña: Passw0rd! (es la misma contraseña para todos) 

@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    </head>
+
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <p class="level-item has-text-centered is-size-3">Examen</p>
+                </a>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{% url 'dashboard' %}">
+                        Mi Dashboard
+                    </a>
+
+                    <a class="navbar-item" href="{% url 'recently_logged_users' %}">
+                        Lista Conectados
+                    </a>
+
+                    <a class="navbar-item" href="#">
+                        Home
+                    </a>
+                </div>
+                {% if request.user.is_authenticated %}
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <form id="logoutForm" action="{% url 'logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </nav>
+        <div id="columns">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
